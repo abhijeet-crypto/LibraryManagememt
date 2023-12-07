@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>LMS Django</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+  <style media="screen">
+    body {
+      background-color: #000000;
+      margin: 0px 0px;
+      color: #000000;
+      background-color: #0b0c0c;
+      background-image: url(https://media.istockphoto.com/photos/textbooks-stacked-on-school-desk-with-chalkboard-background-picture-id638383032?b=1&k=20&m=638383032&s=170667a&w=0&h=T8UqCXjblfdTPKu4LlLHqJWizWbd3LEhEkJHAMcB83I=);
+      /* filter: invert(100%);  */
+      /* height: 100%; */
+      /* background-size: 600px 500px; */
+      /* backgroudo; */
+      /* padding-top: 30px; */
+      /* background-repeat: no-repeat; */
+      background-size: 100% 270%;
+
+      /* Center and scale the image nicely */
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .bs-example {
+      margin: 0px;
+
+    }
+
+    .navbar-brand {
+      font-size: 20px;
+      font-family: sans-serif;
+
+    }
+
+    table.redTable {
+      border: 2px solid #A40808;
+      background-color: #000000;
+      width: 100%;
+      text-align: center;
+      border-collapse: collapse;
+    }
+
+    table.redTable td,
+    table.redTable th {
+      border: 1px solid #000000;
+      padding: 3px 2px;
+    }
+
+    table.redTable tbody td {
+      font-size: 13px;
+    }
+
+    table.redTable tr:nth-child(even) {
+      background: #040404;
+    }
+
+    table.redTable thead {
+      background: #A40808;
+    }
+
+    table.redTable thead th {
+      font-size: 19px;
+      font-weight: bold;
+      color: #111010;
+      text-align: center;
+      border-left: 2px solid #A40808;
+    }
+
+    table.redTable thead th:first-child {
+      border-left: none;
+    }
+
+    table.redTable tfoot {
+      font-size: 13px;
+      font-weight: bold;
+      color: #0c0c0c;
+      background: #A40808;
+    }
+
+    table.redTable tfoot td {
+      font-size: 13px;
+    }
+
+    table.redTable tfoot .links {
+      text-align: right;
+    }
+
+    table.redTable tfoot .links a {
+      display: inline-block;
+      background: #151414;
+      color: #A40808;
+      padding: 2px 8px;
+      border-radius: 5px;
+    }
+
+    .table-bordered {
+      outline-color: red;
+      border: 1px solid black;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bs-example">
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+      <img src="/Final_Logo_IIITL.png" alt="logo" style="height: 30px; margin-right: 15px;">
+      <a href="/" class="navbar-brand">IIITL Library</a>
+      <!-- <a href="/" class="navbar-brand">SLMS</a> -->
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+        <div class="navbar-nav">
+        </div>
+        <div class="navbar-nav">
+          <a href="/" class="nav-item nav-link active">Home</a>
+          <!--for book dropdown button-->
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Book</a>
+            <div class="dropdown-menu">
+              <a href="addbook" class="dropdown-item">Add Book</a>
+              <a href="viewbook" class="dropdown-item">View Book</a>
+            </div>
+          </div>
+          <!--for issuebook dropdown button-->
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Issue Book</a>
+            <div class="dropdown-menu">
+              <a href="issuebook" class="dropdown-item">Issue New Book</a>
+              <a href="viewissuedbook" class="dropdown-item">View Issued Book</a>
+            </div>
+          </div>
+          <!--for student dropdown button-->
+          <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Student</a>
+            <div class="dropdown-menu">
+              <a href="viewstudent" class="dropdown-item">View Student</a>
+            </div>
+          </div>
+          <a href="logout" class="nav-item nav-link">LOGOUT</a> &nbsp
+        </div>
+      </div>
+    </nav>
+  </div>
+  <br>
+  <br>
+  <h3 class="p-3 mb-2 bg-success text-white" style='font-size: 30px;text-align:center;'>Registered Students</h3>
+  <br>
+
+  <div class="container" style="color:black; margin-right: 5000px;">
+    <table class="table table-hover table-condensed table-striped table-bordered">
+      <thead>
+        <tr style="border-color: black;">
+          <th style="border-color: black;">Name</th>
+          <th style="border-color: black;">Enrollment</th>
+          <th style="border-color: black;">Branch</th>
+        </tr>
+      </thead>
+      <!-- <tfoot>
+        <tr>
+          <td colspan="3">
+            <div class="links"></div>
+          </td>
+        </tr>
+      </tfoot> -->
+      <!-- < -->
+      <!-- </tr>body> -->
+      <tr>
+        <td style="border-color: black;">anika</td>
+        <td style="border-color: black;">101</td>
+        <td style="border-color: black;">CS</td>
+      <tr>
+        <td style="border-color: black;">saniya</td>
+        <td style="border-color: black;">102</td>
+        <td style="border-color: black;">IT</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <br><br><br><br><br>
+  <!-- <html>be> -->
+  <!-- <br>< -->
+</body>
+
+</html>

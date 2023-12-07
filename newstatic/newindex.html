@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>LMS Django</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+
+    <style type="text/css">
+        body {
+            margin: 0px 0px;
+            color: #000000;
+            background-color: #0b0c0c;
+             background-image: url(https://media.istockphoto.com/photos/textbooks-stacked-on-school-desk-with-chalkboard-background-picture-id638383032?b=1&k=20&m=638383032&s=170667a&w=0&h=T8UqCXjblfdTPKu4LlLHqJWizWbd3LEhEkJHAMcB83I=);
+            /* filter: invert(100%);  */
+            /* height: 100%; */
+            /* background-size: 600px 500px; */
+            /* backgroudo; */
+            /* padding-top: 30px; */
+            /* background-repeat: no-repeat; */
+            background-size:100% 80%;
+
+
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            /* background-size: cover; */
+
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .bs-example {
+            margin: 0px;
+
+
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            font-family: sans-serif;
+
+        }
+
+
+        .bs-example {
+            margin: 0px;
+            /* color: #2b04ff; */
+        }
+
+        .navbar-brand {
+            font-size: 20px;
+            font-family: sans-serif;
+
+        }
+
+        .form-control {
+            border-color: rgb(234, 226, 226);
+            min-height: 41px;
+            box-shadow: none !important;
+        }
+
+        .form-control:focus {
+            border-color: #655b5b;
+        }
+
+        .form-control,
+        .btn {
+            border-radius: 3px;
+        }
+
+        .signup-form {
+            text-decoration: solid;
+            /* position: relative; 
+            float: left; */
+            color: rgb(249, 247, 247);
+            /* opacity: 0.5; */
+
+            width: 400px;
+            height: 700px;
+            margin: 0 auto;
+            padding: 1px 0;
+            /* margin-left: 10px; */
+            margin-top: 30px;
+        }
+
+        .signup-form h2 {
+            color: rgb(0, 0, 0);
+            margin: 0 0 30px 0;
+            display: inline-block;
+            padding: 0 30px 10px 0;
+            border-bottom: 3px solid #ffffff;
+        }
+
+        .signup-form form {
+            color: rgb(255, 255, 255);
+            /* opacity: 0.5; */
+
+            border-radius: 9px;
+            /* margin-bottom: 15px; */
+
+            background: rgb(240, 238, 240);
+            /* box-shadow: 4px 4px 80px rgba(252, 250, 250, 0.861); */
+            padding: 30px;
+            border-color: black;
+        }
+
+        .signup-form form:hover {
+            box-shadow: 2px 2px 1px rgba(252, 250, 250, 0.861);
+        }
+
+        .signup-form .form-group {
+            margin-bottom: 20px;
+        }
+
+        .signup-form label {
+            font-weight: bold;
+            color: #333;
+            font-size: 13px;
+        }
+
+        .signup-form input[type="checkbox"] {
+            margin-top: 2px;
+        }
+
+        .signup-form .btn {
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            margin-top: 20px;
+            min-width: 140px;
+        }
+
+        .signup-form .btn:hover,
+        .signup-form .btn:focus {
+            background: #41cba9;
+            outline: none !important;
+        }
+
+        .signup-form a {
+            color: #2b04ff;
+
+            text-decoration: underline;
+        }
+
+        .signup-form a:hover {
+            text-decoration: none;
+        }
+
+        .signup-form form a {
+            color: #5cd3b4;
+            text-decoration: none;
+        }
+
+        .signup-form form a:hover {
+            text-decoration: underline;
+        }
+
+
+
+        .container {
+            /* position: absolute;
+            right: 0; */
+            margin: 50px;
+            max-width: 300px;
+            max-height: 100%;
+            padding: 20px;
+            background-color: black;
+            text-decoration: solid;
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        form .txt_field {
+            position: relative;
+            border-bottom: 2px solid #adadad;
+            margin: 30px 0;
+        }
+
+        .txt_field input {
+            width: 100%;
+            padding: 0 5px;
+            height: 40px;
+            font-size: 16px;
+            border: none;
+            background: none;
+            outline: none;
+        }
+
+        .txt_field label {
+            position: absolute;
+            top: 50%;
+            left: 5px;
+            color: #5c5959;
+            transform: translateY(-50%);
+            font-size: 16px;
+            pointer-events: none;
+            transition: .5s;
+        }
+
+        .txt_field span::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: #2691d9;
+            transition: .5s;
+        }
+
+        .txt_field input:focus~label,
+        .txt_field input:valid~label {
+            top: -5px;
+            color: #2691d9;
+        }
+
+        .txt_field input:focus~span::before,
+        .txt_field input:valid~span::before {
+            width: 100%;
+        }
+
+        .leftman {
+            position: relative;
+            float: left;
+            margin-top: 60px;
+            margin-left: 30px;
+
+        }
+
+        .leftman img {
+            filter: invert(95%);
+            height: 460px;
+            width: 380px;
+        }
+
+        .logo {
+            position: relative;
+            float: none;
+            display: inline-block;
+            margin-top: 70px;
+            margin-left: 170px;
+
+
+        }
+
+        .logo img {
+            height: 460px;
+            width: 380px;
+        }
+
+        /* #myvideo {
+            width: 100vw;
+            height: 80vh;
+            object-fit: cover;
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 130px;
+            bottom: 0;
+            z-index: -1;
+            /* filter: invert(100%); */
+        /* } */
+    </style>
+
+
+
+
+
+
+</head>
+
+<body>
+    <!-- 
+    <div class="bs-example">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+            <a href="/" class="navbar-brand">SLMS</a>
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav">
+
+
+                </div>
+
+                <div class="navbar-nav">
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <a href="/adminclick" class="nav-item nav-link">Admin</a>
+                    <a href="/studentclick" class="nav-item nav-link">Student</a>
+                </div>
+
+
+
+
+            </div>
+        </nav>
+    </div> -->
+
+    <div class="bs-example">
+        <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top" style="color: #2b04ff;">
+            <img src="/Final_Logo_IIITL.png" alt="logo" style="height: 30px; margin-right: 15px;">
+            <a href="/" class="navbar-brand">IIITL Library</a>
+
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                <div class="navbar-nav">
+
+                </div>
+
+                <div class="navbar-nav">
+                    <a href="/" class="nav-item nav-link active">Home</a>
+                    <!--for issuebook dropdown button-->
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Issue Book</a>
+                        <div class="dropdown-menu">
+                            <a href="viewissuedbookbystudent" class="dropdown-item">View Issued Book</a>
+                        </div>
+                    </div>
+                    <a href="logout" class="nav-item nav-link">LOGOUT</a> &nbsp
+                </div>
+
+            </div>
+        </nav>
+    </div>
+    <!-- {% include "library/navbar.html" %} -->
+    <br>
+    <br>
+    <center>
+        <h3 style=" margin-bottom: 0px; color:darkblue; background-color: rgb(197, 205, 199);"
+            class='alert alert-success'>Login As Student!</h3>
+    </center>
+    <!-- <div class="leftman">
+        <img src="/newstatic/man.png" alt="">
+    </div>
+    <div class="logo">
+        <img src="/newstatic/download.png" alt="logo">
+    </div> -->
+
+
+    <!-- 
+    <video autoplay loop id="myvideo">
+        <source src="/newstatic/Man - 115021.mp4" type="video/mp4">
+    </video> -->
+    <div class="signup-form">
+        <form method="post" class="container">
+
+            <center>
+                <h2>Student Login</h2>
+            </center>
+            <!-- 
+            <label for="email"><b>Email</b></label>
+            <input type="text" placeholder="Enter Email" name="email" required> -->
+
+            <div class="txt_field">
+                <input type="text" required>
+                <span></span>
+                <label>UserName</label>
+            </div>
+
+
+            <div class="txt_field">
+                <input type="text" required>
+                <span></span>
+                <label>Password</label>
+            </div>
+            <!-- 
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required> -->
+
+
+            <!-- {% csrf_token %} -->
+            <!-- {% for field in form %} -->
+            <div class="form-group text-center">
+                <label class="control-label col-xs-4"></label>
+                <div class="col-xs-8">
+                    <!-- {{ field }} -->
+                </div>
+            </div>
+            <!-- {% endfor %} -->
+
+            <div class="form-group text-center">
+                <div class="col-xs-8 col-xs-offset-4">
+                    <button type="submit" class="btn btn-success btn-lg" style="border-radius: 8%;">Login</button>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="text-center" style="color:black;">Do not have account? <a href="studentsignup">Signup here</a></div>
+        <!-- <br> -->
+    </div>
+
+
+
+    <!-- {% include "library/footer.html" %} -->
+</body>
+
+</html>
